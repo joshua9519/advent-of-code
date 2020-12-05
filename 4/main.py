@@ -12,7 +12,7 @@ def valid_w_bounds(s, lb, ub):
 
 
 def valid_byr(s):
-    return valid_w_bounds(s, 1920, 2020)
+    return valid_w_bounds(s, 1920, 2002)
 
 
 def valid_iyr(s):
