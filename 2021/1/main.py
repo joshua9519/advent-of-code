@@ -19,7 +19,6 @@ def part2(input_list):
     prev = 0
     for i in range(length):
         if (i+2) < length:
-            print(input_list[i:i+3])
             s = sum(input_list[i:i+3])
             if i != 0 and s > prev:
                 count += 1
