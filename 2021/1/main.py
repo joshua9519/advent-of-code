@@ -54,7 +54,7 @@ def test(input_slist, expected):
 
 
 def main():
-    with open('1/input.txt') as f:
+    with open('3/input.txt') as f:
         print(compute(f.read().splitlines()))
 
     return 0
