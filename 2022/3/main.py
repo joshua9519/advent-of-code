@@ -2,10 +2,14 @@ import pytest
 import string
 
 
-def parse_1(slist):
+def parse(slist):
     rucksacks = [[i[:int(len(i)/2)], i[int(len(i)/2):]] for i in slist]
 
-    return rucksacks
+    groups = []
+    for i in range(int(len(slist)/3)):
+        groups.append(slist[i*3:(i+1)*3])
+
+    return rucksacks, groups
 
 
 def get_score(common):
@@ -30,13 +34,6 @@ def part1(rucksacks):
     return score
 
 
-def parse_2(slist):
-    groups = []
-    for i in range(int(len(slist)/3)):
-        groups.append(slist[i*3:(i+1)*3])
-    return groups
-
-
 def part2(rucksacks):
     score = 0
     for group in rucksacks:
@@ -53,8 +50,9 @@ def part2(rucksacks):
     return score
 
 
-def compute(rucksacks):
-    return part1(parse_1(rucksacks)), part2(parse_2(rucksacks))
+def compute(input_list):
+    rucksacks, groups = parse(input_list)
+    return part1(rucksacks), part2(groups)
 
 
 @pytest.mark.parametrize(
@@ -67,30 +65,13 @@ def compute(rucksacks):
             "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
             "ttgJtRGJQctTZtZT",
             "CrZsJsPPZsGzwwsLwLmpwMDw"
-        ],[
+        ],([
             ["vJrwpWtwJgWr", "hcsFMMfFFhFp"],
             ["jqHRNqRjqzjGDLGL", "rsFMfFZSrLrFZsSL"],
             ["PmmdzqPrV", "vPwwTWBwg"],
             ['wMqvLMZHhHMvwLH', 'jbvcjnnSBnvTQFn'],
             ['ttgJtRGJ', 'QctTZtZT'],
             ['CrZsJsPPZsGz', 'wwsLwLmpwMDw']
-        ]),
-    ),
-)
-def test_parse_1(input_s, expected):
-    assert parse_1(input_s) == expected
-
-
-@pytest.mark.parametrize(
-    ('input_s', 'expected'),
-    (
-        ([
-            "vJrwpWtwJgWrhcsFMMfFFhFp",
-            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
-            "PmmdzqPrVvPwwTWBwg",
-            "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
-            "ttgJtRGJQctTZtZT",
-            "CrZsJsPPZsGzwwsLwLmpwMDw"
         ],[
             [
                 "vJrwpWtwJgWrhcsFMMfFFhFp",
@@ -102,11 +83,11 @@ def test_parse_1(input_s, expected):
                 "ttgJtRGJQctTZtZT",
                 "CrZsJsPPZsGzwwsLwLmpwMDw"
             ],
-        ]),
+        ])),
     ),
 )
-def test_parse_2(input_s, expected):
-    assert parse_2(input_s) == expected
+def test_parse(input_s, expected):
+    assert parse(input_s) == expected
 
 
 @pytest.mark.parametrize(
@@ -120,7 +101,7 @@ def test_parse_2(input_s, expected):
             "ttgJtRGJQctTZtZT",
             "CrZsJsPPZsGzwwsLwLmpwMDw"
         ],
-        (157, 0)),
+        (157, 70)),
     ),
 )
 def test(rucksacks, expected):
