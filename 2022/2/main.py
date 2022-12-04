@@ -1,5 +1,4 @@
 import pytest
-import string
 
 
 def parse(slist):
@@ -60,9 +59,18 @@ def compute(rounds):
 @pytest.mark.parametrize(
     ('input_s', 'expected'),
     (
-        (["A Y",
-"B X",
-"C Z"], [["A", "Y"], ["B", "X"], ["C", "Z"]]),
+        (
+            [
+                "A Y",
+                "B X",
+                "C Z"
+            ],
+            [
+                ["A", "Y"],
+                ["B", "X"],
+                ["C", "Z"]
+            ]
+        ),
     ),
 )
 def test_parse(input_s, expected):
@@ -72,8 +80,14 @@ def test_parse(input_s, expected):
 @pytest.mark.parametrize(
     ('rounds', 'expected'),
     (
-        ([["A", "Y"], ["B", "X"], ["C", "Z"]],
-        (15, 12)),
+        (
+            [
+                ["A", "Y"],
+                ["B", "X"],
+                ["C", "Z"]
+            ],
+            (15, 12)
+        ),
     ),
 )
 def test(rounds, expected):
@@ -81,7 +95,7 @@ def test(rounds, expected):
 
 
 def main():
-    with open('input.txt') as f:
+    with open('2/input.txt') as f:
         rounds = parse(f.read().splitlines())
         print(compute(rounds))
 

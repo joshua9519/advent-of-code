@@ -27,7 +27,8 @@ def compute(elves):
 @pytest.mark.parametrize(
     ('input_s', 'expected'),
     (
-        ("""1000
+        (
+            """1000
 2000
 3000
 
@@ -40,24 +41,26 @@ def compute(elves):
 8000
 9000
 
-10000""", [
-    [1000, 2000, 3000],
-    [4000],
-    [5000, 6000],
-    [7000, 8000, 9000],
-    [10000]
-]),
+10000""",
+            [
+                [1000, 2000, 3000],
+                [4000],
+                [5000, 6000],
+                [7000, 8000, 9000],
+                [10000]
+            ]
+        ),
     ),
 )
 def test_parse(input_s, expected):
     assert parse(input_s) == expected
 
 
-
 @pytest.mark.parametrize(
     ('input_s', 'expected'),
     (
-        ("""1000
+        (
+            """1000
 2000
 3000
 
@@ -70,7 +73,9 @@ def test_parse(input_s, expected):
 8000
 9000
 
-10000""", (24000,45000)),
+10000""",
+            (24000, 45000)
+        ),
     ),
 )
 def test(input_s, expected):
@@ -78,7 +83,7 @@ def test(input_s, expected):
 
 
 def main():
-    with open('input.txt') as f:
+    with open('1/input.txt') as f:
         elves = parse(f.read())
         print(compute(elves))
 
