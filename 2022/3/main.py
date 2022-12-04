@@ -56,7 +56,7 @@ def compute(input_list):
 
 
 @pytest.mark.parametrize(
-    ('input_s', 'expected'),
+    ('input_list', 'expected'),
     (
         ([
             "vJrwpWtwJgWrhcsFMMfFFhFp",
@@ -86,8 +86,8 @@ def compute(input_list):
         ])),
     ),
 )
-def test_parse(input_s, expected):
-    assert parse(input_s) == expected
+def test_parse(input_list, expected):
+    assert parse(input_list) == expected
 
 
 @pytest.mark.parametrize(
